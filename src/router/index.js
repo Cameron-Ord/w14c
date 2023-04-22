@@ -14,6 +14,8 @@ const routes = [
 
     component: LoginPage,
 
+    name: `Login Page`,
+
     meta: [
       {
 
@@ -42,7 +44,31 @@ const routes = [
 
     path: `/game`,
 
-    component: GamePage
+    component: GamePage,
+
+    name: `Game Page`,
+
+    meta: [
+
+      {
+
+        title: `Game-Page`
+
+      },
+      {
+
+        name:`description`,
+
+        content: `welcome to the game page`
+
+      },
+      {
+        name: `author`,
+
+        content: `Cameron Ord`
+      }
+
+    ]
   },
 
   {
