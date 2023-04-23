@@ -5,6 +5,10 @@
 
         <h1>{{ display_current_roll }}</h1>
 
+        <p>Times lost:{{ loser_count }}</p>
+        
+        <p>Times won:{{ winner_count }}</p>
+
     </div>
 </template>
 
@@ -50,7 +54,7 @@ import Cookies from 'vue-cookies';
 
                 console.log(this.winner_count);
 
-                
+
 
 
                }else if(roll_amount <50){
@@ -87,6 +91,27 @@ import Cookies from 'vue-cookies';
 
                     Cookies.set(`roll`, `${response[`data`][0]}`);
 
+                    let login_status = Cookies.get(`login_token`);
+
+                    let login_parse = JSON.parse(login_status);
+
+                    console.log(login_parse);
+
+                    if(login_parse === "logged in"){
+
+                        console.log(`welcome`);
+
+                    }else{
+
+                        console.log(`screw you`);
+
+                        this.$router.push(`/`);
+
+                    }
+                    
+                    
+
+      
 
 
                 }).catch((error) =>{

@@ -14,7 +14,7 @@
 
 <script>
 import axios from 'axios';
-import Cookies from 'vue-cookies'
+import Cookies from 'vue-cookies';
     export default {
 
         data() {
@@ -72,12 +72,14 @@ import Cookies from 'vue-cookies'
                 response;
 
                 console.log(`API success`);
-                
+
                 this.$router.push(`/game`);
 
-                login_cookie = `logged in`;
+                login_cookie = "logged in";
 
-                Cookies.set(`login_token`, login_cookie);
+                let login_json = JSON.stringify(login_cookie);
+
+                Cookies.set(`login_token`, login_json);
 
                 console.log(login_cookie);
 
