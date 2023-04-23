@@ -68,11 +68,11 @@ import Cookies from 'vue-cookies'
 
 
             }).then((response) =>{
-
-                console.log(`API success`);
                 
                 response;
 
+                console.log(`API success`);
+                
                 this.$router.push(`/game`);
 
                 login_cookie = `logged in`;
@@ -86,9 +86,11 @@ import Cookies from 'vue-cookies'
             }).catch((error) =>{
 
 
-                console.log(`API failure`);
+               
 
-                console.log(error);
+                error;
+
+                console.log(`API failure`);
 
                 this.error_msg = `Invalid login`;
 
