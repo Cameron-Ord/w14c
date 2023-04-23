@@ -18,6 +18,10 @@ import Cookies from 'vue-cookies';
         data() {
             return {
 
+                winner_count: 0,
+
+                loser_count: 0,
+
                 display_current_roll: undefined,
 
             }
@@ -31,9 +35,38 @@ import Cookies from 'vue-cookies';
 
                let roll_amount = Cookies.get(`roll`);
 
+               console.log(roll_amount);
 
                this.display_current_roll = roll_amount;
 
+
+               if(roll_amount >= 50){
+
+                console.log(`winner`);
+
+                this.winner_count += 1;
+
+                Cookies.set(`win_count`, this.winner_count);
+
+                console.log(this.winner_count);
+
+                
+
+
+               }else if(roll_amount <50){
+
+                console.log(`loser`);
+
+                this.loser_count += 1;
+
+                Cookies.set(`lose_count`, this.loser_count);
+
+                console.log(this.loser_count);
+
+
+               }
+
+               
 
 
 
@@ -50,7 +83,7 @@ import Cookies from 'vue-cookies';
                 }).then((response) =>{
 
 
-                    console.log(response);
+                    response;
 
                     Cookies.set(`roll`, `${response[`data`][0]}`);
 
