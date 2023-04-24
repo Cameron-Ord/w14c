@@ -95,6 +95,7 @@ import Cookies from 'vue-cookies';
 
                     Cookies.set(`roll`, `${response[`data`][0]}`);
 
+                    //calls the roll function//
 
                     this.roll();
                     
@@ -134,7 +135,7 @@ import Cookies from 'vue-cookies';
 
                 console.log(`winner`);
 
-                this.win_count_obj +=1;
+                this.win_count_obj +=1
 
                 win_count = this.win_count_obj;
 
