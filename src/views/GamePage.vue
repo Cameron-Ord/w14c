@@ -6,6 +6,8 @@
 
         <game-button></game-button>
 
+        <!--importing components-->
+
         <score-board></score-board>
 
     </div>
@@ -31,6 +33,8 @@ import ScoreBoard from '@/components/ScoreBoard.vue';
         data() {
             return {
                 
+               
+                //some variables that are used to display messages when they become defined//
                 unwanted: undefined,
 
                 welcome_user: undefined,
