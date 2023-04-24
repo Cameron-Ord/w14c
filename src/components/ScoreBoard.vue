@@ -36,7 +36,7 @@ import Cookies from 'vue-cookies';
 
                 Cookies.set(`roll`, roll_number);
 
-                console.log(roll_number, `testing roll`);
+            
 
 
 
@@ -70,8 +70,6 @@ import Cookies from 'vue-cookies';
 
                 Cookies.set(`loss_count`, loss_count);
 
-                console.log(loss_count, `testing loss`);
-
                 //calls the display function to show the updated loss count//
 
                 this.Cookie_Display_WINLOSS();
@@ -92,9 +90,6 @@ import Cookies from 'vue-cookies';
                 let win_count = this.win_counter;
 
                 Cookies.set(`win_count`, win_count);
-
-                console.log(win_count,`testing win`);
-
 
                 //calls the display function to show the updated win count//
 

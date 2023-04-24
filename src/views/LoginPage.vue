@@ -80,7 +80,7 @@ import Cookies from 'vue-cookies';
 
                 Cookies.set(`login_token`, login_json);
 
-                console.log(login_cookie);
+           
 
 
 

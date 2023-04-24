@@ -35,6 +35,7 @@ import ScoreBoard from '@/components/ScoreBoard.vue';
                 
                
                 //some variables that are used to display messages when they become defined//
+
                 unwanted: undefined,
 
                 welcome_user: undefined,
@@ -66,11 +67,11 @@ import ScoreBoard from '@/components/ScoreBoard.vue';
 
                     let login_parse = JSON.parse(login_status);
 
-                    console.log(login_parse);
+            
 
                     if(login_parse === "logged in"){
 
-                       console.log(`welcome`)
+                     
 
                        this.welcome_user = `Welcome, user`
                         

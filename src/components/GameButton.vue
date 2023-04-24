@@ -52,7 +52,6 @@ import Cookies from 'vue-cookies';
 
                this.$root.$emit(`roll_display`, roll_amount);
 
-               console.log(roll_amount);
 
                if(roll_amount >= 50){
 
@@ -70,7 +69,7 @@ import Cookies from 'vue-cookies';
 
                 //same process, but with loss amounts//
 
-                console.log(`loser`);
+           
 
                 this.lose_count_obj +=1;
 
@@ -121,7 +120,7 @@ import Cookies from 'vue-cookies';
 
                     error;
 
-                    //logs an error message if API fails.//
+                    //console logs an error message if API fails.//
 
                     console.log(`api failure`);
 
