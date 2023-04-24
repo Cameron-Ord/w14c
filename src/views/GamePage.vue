@@ -1,13 +1,16 @@
 <template>
     <div>
+        <h1>{{ welcome_user }}</h1>
 
         <button @click="roll_dice">roll</button>
 
         <h1>{{ display_current_roll }}</h1>
 
-        <p>Times lost:{{ loser_count }}</p>
+        <p>Times lost:{{ display_losses }}</p>
         
-        <p>Times won:{{ winner_count }}</p>
+        <p>Times won:{{ display_wins }}</p>
+
+        <button @click="logout_button">logout</button>
 
     </div>
 </template>
@@ -22,20 +25,45 @@ import Cookies from 'vue-cookies';
         data() {
             return {
 
-                winner_count: 0,
-
-                loser_count: 0,
+                welcome_user: undefined,
 
                 display_current_roll: undefined,
+
+                win_count_obj: 0,
+
+                lose_count_obj: 0,
+
+                display_wins: undefined,
+
+                display_losses: undefined
 
             }
         },
 
         methods:{
 
-            roll_dice(){
+            updatescoreboard(){
+                
+
+                this.display_wins = Cookies.get(`win_count`);
+
+                this.display_losses = Cookies.get(`loss_count`);
 
 
+            },
+
+
+            logout_button(){
+
+
+                Cookies.remove(`login_token`);
+
+                this.$router.push(`/`);
+
+            },
+
+
+            roll_dice(win_count, loss_count){
 
                let roll_amount = Cookies.get(`roll`);
 
@@ -44,28 +72,32 @@ import Cookies from 'vue-cookies';
                this.display_current_roll = roll_amount;
 
 
+
                if(roll_amount >= 50){
 
                 console.log(`winner`);
 
-                this.winner_count += 1;
+                this.win_count_obj +=1;
 
-                Cookies.set(`win_count`, this.winner_count);
+                win_count = this.win_count_obj;
 
-                console.log(this.winner_count);
+                Cookies.set(`win_count`, win_count);
 
-
+                this.updatescoreboard();
 
 
                }else if(roll_amount <50){
 
                 console.log(`loser`);
 
-                this.loser_count += 1;
+                this.lose_count_obj +=1;
 
-                Cookies.set(`lose_count`, this.loser_count);
+                loss_count = this.lose_count_obj;
 
-                console.log(this.loser_count);
+                Cookies.set(`loss_count`, loss_count);
+
+
+                this.updatescoreboard();
 
 
                }
@@ -91,24 +123,7 @@ import Cookies from 'vue-cookies';
 
                     Cookies.set(`roll`, `${response[`data`][0]}`);
 
-                    let login_status = Cookies.get(`login_token`);
 
-                    let login_parse = JSON.parse(login_status);
-
-                    console.log(login_parse);
-
-                    if(login_parse === "logged in"){
-
-                        console.log(`welcome`);
-
-                    }else{
-
-                        console.log(`screw you`);
-
-                        this.$router.push(`/`);
-
-                    }
-                    
                     
 
       
@@ -125,6 +140,42 @@ import Cookies from 'vue-cookies';
 
 
         },
+
+        created(){
+
+
+
+
+        },
+
+        mounted(){
+
+
+
+
+            this.updatescoreboard();
+
+                    let login_status = Cookies.get(`login_token`);
+
+                    let login_parse = JSON.parse(login_status);
+
+                    console.log(login_parse);
+
+                    if(login_parse === "logged in"){
+
+                       console.log(`welcome`)
+
+                       this.welcome_user = `Welcome, user`
+                        
+
+                    }else{
+
+                     
+
+                        this.$router.push(`/`);
+
+                    }
+        }
     }
 </script>
 
