@@ -2,7 +2,7 @@
     <div>
         <h1>{{ welcome_user }}</h1>
 
-        <button @click="roll_dice">roll</button>
+        <button @click="call_api">roll</button>
 
         <h1>{{ display_current_roll }}</h1>
 
@@ -55,6 +55,7 @@ import Cookies from 'vue-cookies';
 
                 this.display_losses = Cookies.get(`loss_count`);
 
+                this.display_current_roll = Cookies.get(`roll`);
 
             },
 
@@ -70,7 +71,49 @@ import Cookies from 'vue-cookies';
             },
 
 
-            roll_dice(win_count, loss_count){
+            call_api(){
+
+
+
+                axios({
+
+
+                    method: `GET`,
+
+                    url: `http://www.randomnumberapi.com/api/v1.0/randomnumber`,
+
+
+
+                }).then((response) =>{
+
+
+                    response;
+
+                    //if the api succeeds, creates a roll cookie containing the number given//
+
+                    Cookies.set(`roll`, `${response[`data`][0]}`);
+
+
+                    this.roll();
+                    
+
+      
+
+
+                }).catch((error) =>{
+
+                    //if API fails, prints a message to console.
+                    error;
+
+                    console.log(`api failure`);
+
+                });
+
+            },
+
+
+            roll(win_count, loss_count){
+
 
                 //making the roll amount = to the value stored in the cookie, then displaying it//
 
@@ -119,44 +162,6 @@ import Cookies from 'vue-cookies';
 
                
 
-
-               //axios get for the random number gen//
-
-
-                axios({
-
-
-                    method: `GET`,
-
-                    url: `http://www.randomnumberapi.com/api/v1.0/randomnumber`,
-
-
-
-                }).then((response) =>{
-
-
-                    response;
-
-                    //if the api succeeds, creates a roll cookie containing the number given//
-
-                    Cookies.set(`roll`, `${response[`data`][0]}`);
-
-
-                    
-
-      
-
-
-                }).catch((error) =>{
-
-                    //if API fails, prints a message to console.
-                    error;
-
-                    console.log(`api failure`);
-
-                });
-
-
             }
 
 
@@ -170,7 +175,6 @@ import Cookies from 'vue-cookies';
         },
 
         mounted(){
-
 
 
             //updates on page load//
