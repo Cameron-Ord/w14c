@@ -51,6 +51,8 @@ import Cookies from 'vue-cookies';
                 
                 //updates and displays values stored in respective cookies//
 
+               
+
                 this.display_wins = Cookies.get(`win_count`);
 
                 this.display_losses = Cookies.get(`loss_count`);
@@ -178,6 +180,7 @@ import Cookies from 'vue-cookies';
 
 
             //updates on page load//
+
 
             this.updatescoreboard();
 
