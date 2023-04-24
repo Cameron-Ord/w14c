@@ -6,6 +6,7 @@
         <button class="login" @click="user_login">Log-in</button>
 
  
+        <!--if error_msg is not undefined, it will display-->
 
         <p v-if="error_msg !== undefined">{{ error_msg }}</p>
 
@@ -33,22 +34,17 @@ import Cookies from 'vue-cookies';
 
             user_login(login_cookie){
 
+                //creating the login input boxes//
 
                 let pw_input = document.querySelector(`.pass_input`);
+
+                //making pw_input_value and em_input_value equal the value typed into the input box..//
 
                 let pw_input_value = pw_input[`value`];
 
                 let em_input = document.querySelector(`.email_input`);
             
                 let em_input_value = em_input[`value`];
-
-
-
-
-
-
-
-                
 
 
                      axios({
@@ -60,6 +56,8 @@ import Cookies from 'vue-cookies';
 
                 data: {
 
+                    //posting the values stored in the variables//
+
                     email: em_input_value,
 
                     password: pw_input_value
@@ -69,6 +67,7 @@ import Cookies from 'vue-cookies';
 
             }).then((response) =>{
                 
+                //if API returns successfully, moves user to game page and creates a login token cookie containing json data//
                 response;
 
                 console.log(`API success`);
@@ -88,6 +87,7 @@ import Cookies from 'vue-cookies';
             }).catch((error) =>{
 
 
+                //if login fails, gives error_msg a string value, and removes any existing login cookies//
                
 
                 error;

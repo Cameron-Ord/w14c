@@ -49,6 +49,7 @@ import Cookies from 'vue-cookies';
 
             updatescoreboard(){
                 
+                //updates and displays cookies based on the cookie//
 
                 this.display_wins = Cookies.get(`win_count`);
 
@@ -60,6 +61,7 @@ import Cookies from 'vue-cookies';
 
             logout_button(){
 
+                //removes login cookie and pushes user to '/''//
 
                 Cookies.remove(`login_token`);
 
@@ -70,6 +72,8 @@ import Cookies from 'vue-cookies';
 
             roll_dice(win_count, loss_count){
 
+                //making the roll amount = to the value stored in the cookie, then displaying it//
+
                let roll_amount = Cookies.get(`roll`);
 
                console.log(roll_amount);
@@ -79,6 +83,9 @@ import Cookies from 'vue-cookies';
 
 
                if(roll_amount >= 50){
+
+
+                //if roll amount is 50 or greater, adds a win, then calls the updatescoreboard() function to display it//
 
                 console.log(`winner`);
 
@@ -92,6 +99,9 @@ import Cookies from 'vue-cookies';
 
 
                }else if(roll_amount <50){
+
+
+                //if roll amount is less than 50, adds a loss, then calls the updatescoreboard() function to display it//
 
                 console.log(`loser`);
 
@@ -110,6 +120,7 @@ import Cookies from 'vue-cookies';
                
 
 
+               //axios get for the random number gen//
 
 
                 axios({
@@ -126,6 +137,8 @@ import Cookies from 'vue-cookies';
 
                     response;
 
+                    //if the api succeeds, creates a roll cookie containing the number given//
+
                     Cookies.set(`roll`, `${response[`data`][0]}`);
 
 
@@ -136,7 +149,10 @@ import Cookies from 'vue-cookies';
 
                 }).catch((error) =>{
 
-                    console.log(error);
+                    //if API fails, prints a message to console.
+                    error;
+
+                    console.log(`api failure`);
 
                 });
 
@@ -157,8 +173,12 @@ import Cookies from 'vue-cookies';
 
 
 
+            //updates on page load//
 
             this.updatescoreboard();
+
+
+            //checks if the user is logged in on page load, if user is not logged in, returns them to login page//
 
                     let login_status = Cookies.get(`login_token`);
 
