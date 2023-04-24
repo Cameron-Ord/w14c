@@ -1,3 +1,5 @@
+
+//importing views and dependencies//
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import LoginPage from '@/views/LoginPage.vue'
@@ -8,6 +10,9 @@ Vue.use(VueRouter)
 
 
 const routes = [
+
+  //setting component paths and creating their meta tag content to use in the JS below//
+
   {
 
     path: `/`,
