@@ -12,6 +12,9 @@
 
         <button @click="logout_button">logout</button>
 
+
+        <h1>{{ unwanted }}</h1>
+
     </div>
 </template>
 
@@ -24,6 +27,8 @@ import Cookies from 'vue-cookies';
 
         data() {
             return {
+
+                unwanted: undefined,
 
                 welcome_user: undefined,
 
@@ -171,6 +176,8 @@ import Cookies from 'vue-cookies';
                     }else{
 
                      
+                        this.unwanted = "YOU AREN'T LOGGED IN, BEGONE MONSTER!!!";
+
 
                         this.$router.push(`/`);
 
