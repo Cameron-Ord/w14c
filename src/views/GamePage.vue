@@ -49,7 +49,7 @@ import Cookies from 'vue-cookies';
 
             updatescoreboard(){
                 
-                //updates and displays cookies based on the cookie//
+                //updates and displays values stored in respective cookies//
 
                 this.display_wins = Cookies.get(`win_count`);
 
