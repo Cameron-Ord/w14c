@@ -3,9 +3,9 @@
 
         <!--displaying the values stored in the variables by the cookies-->
 
-        <h1>{{ display_roll }}</h1>
-        <h1>Wins: {{ display_win }}</h1>
-        <h1> Losses: {{ display_loss }}</h1>
+        <h1>{{ roll_amount_obj }}</h1>
+        <h1>Wins: {{ win_counter}}</h1>
+        <h1> Losses: {{ loss_counter }}</h1>
 
     </div>
 </template>
@@ -16,10 +16,9 @@ import Cookies from 'vue-cookies';
         data() {
             return {
 
-                display_roll: undefined,
+              
                 roll_amount_obj: undefined,
-                display_loss: undefined,
-                display_win: undefined,
+
                 win_counter: undefined,
                 loss_counter: undefined
             }
@@ -31,11 +30,8 @@ import Cookies from 'vue-cookies';
 
 
                 this.roll_amount_obj = roll_amount;
-
-                let roll_number = this.roll_amount_obj;
-
-                Cookies.set(`roll`, roll_number);
-
+            
+                Cookies.set(`roll`, this.roll_amount_obj);
             
 
 
@@ -44,18 +40,6 @@ import Cookies from 'vue-cookies';
             },
 
 
-            Cookie_Display_WINLOSS(){
-
-
-                //makes the respective variables = to the data stored inside the cookies//
-
-                this.display_loss = Cookies.get(`loss_count`);
-
-                this.display_win = Cookies.get(`win_count`);
-
-                this.display_roll = Cookies.get(`roll`);
-
-            },
 
             update_score_loss(loss_count_obj){
 
@@ -66,13 +50,10 @@ import Cookies from 'vue-cookies';
 
                 this.loss_counter = loss_count_obj;
 
-                let loss_count = this.loss_counter;
-
-                Cookies.set(`loss_count`, loss_count);
+                Cookies.set(`loss_count`, this.loss_counter);
 
                 //calls the display function to show the updated loss count//
 
-                this.Cookie_Display_WINLOSS();
 
 
 
@@ -87,13 +68,11 @@ import Cookies from 'vue-cookies';
 
                 this.win_counter = win_count_obj;
 
-                let win_count = this.win_counter;
-
-                Cookies.set(`win_count`, win_count);
+                Cookies.set(`win_count`, this.win_counter);
 
                 //calls the display function to show the updated win count//
 
-                this.Cookie_Display_WINLOSS();
+
 
             },
         },
@@ -101,6 +80,8 @@ import Cookies from 'vue-cookies';
 
 
         mounted(){
+
+
 
 
             //when mounted, receives whats been sent, then calls each respective function//
@@ -113,8 +94,40 @@ import Cookies from 'vue-cookies';
         
             //calls the display function on page load to ensure values are displayed//
 
-            this.Cookie_Display_WINLOSS();
+
+            let cookie_wins = Cookies.get(`win_count`);
+
+            if(cookie_wins !== undefined) {
+
+                this.win_counter = cookie_wins;
+           
+            }else{
+
+                this.win_counter = 0;
+            }
+         
         
+            let cookie_loss = Cookies.get(`loss_count`);
+
+            if(cookie_loss !== undefined) {
+
+                this.loss_counter = cookie_loss;
+           
+            }else{
+
+                this.loss_counter = 0;
+            }
+
+            let cookie_roll = Cookies.get(`roll`);
+
+            if(cookie_roll !== undefined){
+
+                this.roll_amount_obj = cookie_roll;
+            }else{
+
+                this.roll_amount_obj = 0;
+            }
+         
         }
 
 
